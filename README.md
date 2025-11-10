@@ -128,6 +128,39 @@ if (onIce) xa *= 0.995;
 else xa *= Level.FRICTION;
 ```
 
+## tilemap mechanics
+* To get Tile coords divide sheetwidth and sheet height through tilewidth and tileheight
+* You can iterate over these tilecoords and make an individual array for each tile
+
+```java
+// Division
+int tileIndex = sheetWidth() / tilewidth;
+int tileIndex = sheetHeight() / tileheight;
+
+int[] tilePixels = new int[tilewidth * tileheight];
+
+// get Tilevalues with
+getRGB(x, y, xc, yc, array, start, scanlinesize);
+
+// set Tilevalues with
+setRGB(x, y, xc, yc, array, start, scanlinesize);
+```
+
+## Color Interpolation
+* You can interpolate different color channels of your graphcics.
+* To Extract these you can use these Variables:
+
+```java
+int r = ((color >> 16) & 0xff);
+int g = ((color >> 8) & 0xff);
+int b = ((color) & 0xff);
+```
+
+* to merge them back you can use the bitwise or operator:
+
+```java
+int newColor = (r << 16) | (g << 8) | (b);
+```
 
 
 ## Summary Table
