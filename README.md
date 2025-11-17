@@ -175,6 +175,18 @@ int b = ((color) & 0xff);
 r = r * rCol / 255;
 b = b * bCol / 255;
 g = g * gCol / 255;
+
+// you can use this system for linear contrast lowering
+
+// Lower every color by ~60% darker tones wont be affected as much beacuse they can't get darker
+r = r * (255 - 60) / 255;
+g = g * (255 - 60) / 255;
+b = b * (255 - 60) / 255;
+
+// Add back these colors and the bright colors turn normal and dark colors that werent affected by the color lowering bevause they're now proportionaly brighter than before
+r += 60;
+g += 60;
+b += 60;
 ```
 
 
