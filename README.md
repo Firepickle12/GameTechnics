@@ -170,7 +170,14 @@ setRGB(x, y, xc, yc, array, start, scanlinesize);
 int r = ((color >> 16) & 0xff);
 int g = ((color >> 8) & 0xff);
 int b = ((color) & 0xff);
+
+// Here you can moify the strength of each color channel 0xff(255) bright | 0x00(0) dark
+r = r * rCol / 255;
+b = b * bCol / 255;
+g = g * gCol / 255;
 ```
+
+
 
 * to merge them back you can use the bitwise or operator:
 
