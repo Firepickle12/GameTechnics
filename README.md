@@ -171,6 +171,8 @@ int newColor = (r << 16) | (g << 8) | (b);
 		for (int x = x0 + xo; x < x1 + xo; x++) {
 			for (int y = y0 + yo; y < y1 + yo; y++) {
 
+				// Remember that you have to clear your ImageBufferif you din+t do it already
+
 				setTile(x - xo, y - yo);
 			}
 		}
