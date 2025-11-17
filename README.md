@@ -162,16 +162,17 @@ int b = ((color) & 0xff);
 int newColor = (r << 16) | (g << 8) | (b);
 ```
 
+## Tile Scrolling
+* If you made a few tiles you can scroll them if you render them with nested loops (x and y)
+* You add the offset to the nested for loop to extend the tile canvas in which these are rendered and you subtract this offset on the tiles you actually render.
+* So for example you add an xOffset to the horizontal Size of your level or tilemap the Level gets expanded on the x-Axis. If you subtract this Offset from the xCoord from your tile it doesn't get rendered anymore on the left side and this offsetted tile gets moved to its original position
 
-## Summary Table
+```java
+		for (int x = x0 + xo; x < x1 + xo; x++) {
+			for (int y = y0 + yo; y < y1 + yo; y++) {
 
-| Topic                   | Description                                  |
-| ----------------------- | -------------------------------------------- |
-| Vector Normalisation    | Calculate direction independent of length    |
-| Acceleration / Friction | Smooth movement with realistic acceleration  |
-| Tilemaps                | Level structure and collision detection      |
-| Entity Getter           | Efficient tile-based entity hitbox detection |
-| Sprite Animation        | Control frame display over time              |
-| onGround Variable       | Detect ground contact                        |
-| Input Tweaks            | Prevent repeated input from held buttons     |
-| Movement Gimmicks       | Small mechanics to make movement feel alive  |
+				setTile(x - xo, y - yo);
+			}
+		}
+	}
+```
