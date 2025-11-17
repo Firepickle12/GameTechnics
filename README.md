@@ -39,6 +39,22 @@ public void tick() {
 }
 ```
 
+## Nested Loops
+* if you create a nested for-loop for tilerendering you can specify the area with x0, x1, y0, y1
+* these are the coordinates and if you render it with these for loops you specify it like this
+
+```java
+	for (int x = x0; x < x1; x++) {
+		for (int y = y0; y < y1; y++) {
+			g.setColor(new Color(Math.random() * 0xffffff));
+			g.fillRect(x * 8, y * 8, 8, 8) // Example
+		}
+	}
+
+	// specified area width (x1 - x0)
+	// specified area height (y1 - y0)
+```
+
 ## Tilemaps
 
 ```java
