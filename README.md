@@ -162,6 +162,45 @@ getRGB(x, y, xc, yc, array, start, scanlinesize);
 setRGB(x, y, xc, yc, array, start, scanlinesize);
 ```
 
+## tilebased Lighting
+* To get tilebased lighting you need to create an array which saves the light values for your tiles
+
+```java
+	int[] seen = new int[width * height];
+
+	// you can make light rays from different ponts with this design
+	private void lightRay(int x0, int y0, int x1, int y1, int r) {
+
+		// Optional for circular lighting
+		int rd = r;
+		{
+			double xd = (x1 - x0);
+			double yd = (y1 - y0);
+			double dist = Math.sqrt(xd * xd + yd * yd) / r;
+			rd = (int) (r / dist);
+		}
+		
+		
+		for (int i = 0; i <= rd; i++) {
+			int x = x0 + (x1 - x0) * i / r;
+			int y = y0 + (y1 - y0) * i / r;
+			
+			if (isFree(x, y)) {
+				return;
+			}
+
+			// Optional for smooth circular lighting 
+			for (int xx = -1; xx <= 1; xx++) {
+				for (int yy = -1; yy <= 1; yy++) {
+					if (x >= 0 && y >= 0 && x < width && y < height) {
+						seen[x + y * width] = 2; // Your light value
+					}
+				}
+			}
+		}
+	}
+```
+
 ## Color Interpolation
 * You can interpolate different color channels of your graphcics.
 * To Extract these you can use these Variables:
